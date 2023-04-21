@@ -24,7 +24,9 @@ namespace _1670Book.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return _context.Products != null ? 
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
+            return _context.Products != null ? 
                           View(await _context.Products.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Products'  is null.");
         }
@@ -39,6 +41,8 @@ namespace _1670Book.Controllers
 
             var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
             if (product == null)
             {
                 return NotFound();
@@ -48,8 +52,11 @@ namespace _1670Book.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
             return View();
         }
 
@@ -70,6 +77,7 @@ namespace _1670Book.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Products == null)
@@ -78,6 +86,8 @@ namespace _1670Book.Controllers
             }
 
             var product = await _context.Products.FindAsync(id);
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
             if (product == null)
             {
                 return NotFound();
@@ -121,6 +131,7 @@ namespace _1670Book.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Products == null)
@@ -130,6 +141,8 @@ namespace _1670Book.Controllers
 
             var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
             if (product == null)
             {
                 return NotFound();
