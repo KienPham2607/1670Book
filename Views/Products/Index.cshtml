@@ -47,13 +47,30 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @*@Html.DisplayFor(modelItem => item.Image)*@
+                <img src="@Html.DisplayFor(modelItem => item.Image)" width="50" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCategory)
+                @*@Html.DisplayFor(modelItem => item.IdCategory)*@
+                    @{
+                        bool isMatch = false;
+                        foreach (var x in ViewBag.Categories)
+                        {
+                            if (x.Id == item.IdCategory)
+                            {
+                                isMatch = true;
+                                <text>@x.Name</text>
+                                break;
+                            }
+                        }
+                        if (!isMatch)
+                        {
+                            <text>Null</text>
+                        }
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
