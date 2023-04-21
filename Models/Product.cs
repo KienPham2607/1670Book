@@ -16,7 +16,7 @@ namespace _1670Book.Models
         [Range(1, 101, ErrorMessage = "Book unit price must be 1 to 100 dolar")]
         public double Price { get; set; }
         [Required]
-        [Range(0, 1000, ErrorMessage = "Quantity must be 1 to 1000")]
+        [Range(1, 1000, ErrorMessage = "Quantity must be 1 to 1000")]
         public int Quantity { get; set; }
         [Required, StringLength(255), MaxLength(255), MinLength(1)]
         public string Image { get; set; }
