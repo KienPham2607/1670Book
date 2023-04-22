@@ -22,6 +22,7 @@ namespace _1670Book.Controllers
         }
 
         // GET: Products
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var categories = _context.Category.ToList();
