@@ -3,23 +3,103 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row row-cols-4 g-4">
-    @foreach (var product in ViewBag.Products)
-    {
-        <div class="col">
-            <div class="card h-100" >
-                <img style="height:380px" src="@product.Image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text">
-                        <b>Price: </b>@product.Price<br />
-                        <b>Quantity: </b>@product.Quantity<br />
-                        @*<b>Desciption: </b>@product.Desciption<br/>*@
-                        <b>Category: </b>@product.IdCategory<br />
-                    </p>
-                    <button type="button" onclick="add(@product.Id)" class="btn btn-primary">Add to cart</button>
-                </div>
-            </div>
+
+
+    <section class="ftco-section">
+			<div class="container">
+				<div class="row no-gutters ftco-services">
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-shipped"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Free Shipping</h3>
+                <span>On order over $100</span>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-diet"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">All books</h3>
+                <span>The best product</span>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-award"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Superior Quality</h3>
+                <span>Quality Products</span>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-customer-service"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Support</h3>
+                <span>24/7 Support</span>
+              </div>
+            </div>      
+          </div>
         </div>
-    }
-</div>
+			</div>
+		</section>
+
+
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Featured Books</span>
+            <h2 class="mb-4">All Books</h2>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+                 @foreach (var product in ViewBag.Products)
+                            {
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="img-prod"><img class="img-fluid" src="@product.Image"alt="Colorlib Template">
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#">@product.Name</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">@product.Price</span></p>
+                                    <p class="price"><span class="price-sale">@product.Quantity</span></p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    								<span><i class="ion-ios-menu"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart"></i></span>
+	    							</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			}
+    		</div>
+    	</div>
+    </section>

@@ -7,46 +7,53 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @*@Html.DisplayFor(model => model.Image)*@
-            <img src=@Html.DisplayFor(model => model.Image) width="100">
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCategory)
-        </dt>
-        <dd class = "col-sm-10">
-            @*@Html.DisplayFor(model => model.IdCategory)*@
+<div class="container col-md-8 mt-3">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="@Html.DisplayFor(model => model.Image)" width="250" height="250" alt="...">
+    </div>
+   
+  </div>
+</div>
+       
+
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+      <div class="content-heading"><h3 class="title text-center">The detail information of product</h3></div>
+							<div class="data item content" id="additional" data-role="content">   
+                                 <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <tbody>
+                                                <tr>
+                        <th class="col label" scope="row">Code Product:</th>
+                        <td class="col data" > @Html.DisplayFor(model => model.Id)</td>
+                    </tr>
+                                                                <tr>
+                        <th class="col label" scope="row">Name Product:</th>
+                        <td class="col data" data-th="Xuất xứ"> @Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+
+                                                                <tr>
+                        <th class="col label" scope="row">Price:</th>
+                        <td class="col data" data-th="Mã VT"> @Html.DisplayFor(model => model.Price)</td>
+                    </tr>
+                                                                <tr>
+                        <th class="col label" scope="row">Quantity: </th>
+                        <td class="col data" data-th="Chất liệu"> @Html.DisplayFor(model => model.Quantity)</td>
+                    </tr>
+                                                                <tr>
+                        <th class="col label" scope="row">Description of Products:  </th>
+                        <td class="col data" data-th="Xuất xứ thương hiệu"> @Html.DisplayFor(model => model.Description)               </td>
+                    </tr>
+                                                                <tr>
+                        <th class="col label" scope="row">Category: </th>
+                        <td class="col data" data-th="Tuổi"> @*@Html.DisplayFor(model => model.IdCategory)*@
             @{
                 bool isMatch = false;
                 foreach (var item in ViewBag.Categories)
@@ -62,11 +69,24 @@
                 {
                     <text>Null</text>
                 }
-            }
-        </dd>
-    </dl>
+            } </td>
+                          
+                </tbody>
+        </table>
+    </div>
 </div>
+</div>
+				</div>
+	</div>
+    </div>
+
+
+     @if (User.IsInRole("Admin"))
+                {
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+                }
