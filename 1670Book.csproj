@@ -52,6 +52,7 @@
     <None Include="wwwroot\js\popper.min.js" />
     <None Include="wwwroot\js\range.js" />
     <None Include="wwwroot\js\scrollax.min.js" />
+    <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\scss\.DS_Store" />
     <None Include="wwwroot\scss\bootstrap\.DS_Store" />
     <None Include="wwwroot\scss\bootstrap\bootstrap-grid.scss" />
