@@ -7,26 +7,7 @@
 
 <h1>Details</h1>
 
-<
-
-
-     @if (User.IsInRole("Admin"))
-                {
-
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-                }
-
-
-
-
-
-
-
-                  <section class="ftco-section">
+ <section class="ftco-section">
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
@@ -105,5 +86,15 @@
     		</div>
     	</div>
     </section>
+
+
+
+@if (User.IsInRole("Admin"))
+ {
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+}
 
 
