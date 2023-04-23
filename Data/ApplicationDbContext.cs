@@ -13,6 +13,12 @@ namespace _1670Book.Data
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<_1670Book.Models.Category> Category { get; set; } = default!;
+        public DbSet<Category> Categories { get; set; } = default!;
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<CartDetail> CartDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+
     }
 }

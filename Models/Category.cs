@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _1670Book.Models
 {
+    [Table("Category")]
     public class Category
     {
         [Key]
@@ -11,6 +13,6 @@ namespace _1670Book.Models
         public string? Description { get; set; }
         [Required]
         public string Status { get; set; }
-        public virtual ICollection<Product>? Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

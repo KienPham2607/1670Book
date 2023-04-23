@@ -25,5 +25,9 @@ namespace _1670Book.Models
         [Display(Name = "Category")]
         public int IdCategory { get; set; }
         public virtual Category? Category { get; set; }
+        public List<OrderDetail> OrderDetail { get; set; }
+        public List<CartDetail> CartDetail { get; set; }
+        [NotMapped]
+        public string CategoryName { get; set; }
     }
 }

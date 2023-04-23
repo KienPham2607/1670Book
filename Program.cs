@@ -1,5 +1,7 @@
+using _1670Book;
 using _1670Book.Data;
 using _1670Book.Models;
+using _1670Book.Repositories;
 using _1670Book.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddDefaultTokenProviders();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IHomeRepository, HomeRepository>();
 
 var app = builder.Build();
 

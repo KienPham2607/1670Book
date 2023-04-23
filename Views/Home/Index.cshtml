@@ -1,10 +1,38 @@
-﻿@model IEnumerable<_1670Book.Models.Product>
+﻿@model ProductDisplayModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
+<div class="my-2">
+    <form asp-action="Index" class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-12">
+            <label class="visually-hidden" for="categoryId">Categories</label>
+            <select class="form-select" id="categoryId" name="categoryId">
+                <option selected>Genre</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-12">
+            <label class="visually-hidden" for="sterm">Search by title</label>
+            <div class="input-group">
+                <div class="input-group-text"></div>
+                <input type="text" class="form-control" id="sterm" name="sterm" placeholder="Sarch by title">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="/Home/Index" class="btn btn-dark">Reset</a>
+        </div>
+    </form>
+</div>
+
 <div class="row row-cols-4 g-4">
-    @foreach (var product in ViewBag.Products)
+    @foreach (var product in Model.Products)
     {
         <div class="col">
             <div class="card h-100" >
@@ -13,9 +41,9 @@
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">
                         <b>Price: </b>@product.Price<br />
-                        <b>Quantity: </b>@product.Quantity<br />
+                        @*<b>Quantity: </b>@product.Quantity<br />*@
                         @*<b>Desciption: </b>@product.Desciption<br/>*@
-                        <b>Category: </b>@product.IdCategory<br />
+                        <b>Category: </b>@product.CategoryName<br />
                     </p>
                     <button type="button" onclick="add(@product.Id)" class="btn btn-primary">Add to cart</button>
                 </div>

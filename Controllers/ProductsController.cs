@@ -25,7 +25,7 @@ namespace _1670Book.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var categories = _context.Category.ToList();
+            var categories = _context.Categories.ToList();
             ViewBag.Categories = categories;
             return _context.Products != null ? 
                           View(await _context.Products.ToListAsync()) :
@@ -42,7 +42,7 @@ namespace _1670Book.Controllers
 
             var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
-            var categories = _context.Category.ToList();
+            var categories = _context.Categories.ToList();
             ViewBag.Categories = categories;
             if (product == null)
             {
@@ -56,7 +56,7 @@ namespace _1670Book.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            var categories = _context.Category.ToList();
+            var categories = _context.Categories.ToList();
             ViewBag.Categories = categories;
             return View();
         }
@@ -87,7 +87,7 @@ namespace _1670Book.Controllers
             }
 
             var product = await _context.Products.FindAsync(id);
-            var categories = _context.Category.ToList();
+            var categories = _context.Categories.ToList();
             ViewBag.Categories = categories;
             if (product == null)
             {
@@ -142,7 +142,7 @@ namespace _1670Book.Controllers
 
             var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
-            var categories = _context.Category.ToList();
+            var categories = _context.Categories.ToList();
             ViewBag.Categories = categories;
             if (product == null)
             {
