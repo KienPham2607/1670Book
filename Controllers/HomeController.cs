@@ -1,6 +1,7 @@
 ﻿using _1670Book.Data;
 using _1670Book.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace _1670Book.Controllers
@@ -16,9 +17,22 @@ namespace _1670Book.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var products = _context.Products.ToList();
+            if (_context.Products == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var products = from prd in _context.Products select prd;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name!.Contains(searchString));
+            }
+
+            var categories = _context.Category.ToList();
+            ViewBag.Categories = categories;
             ViewBag.Products = products;
             return View();
         }

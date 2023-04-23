@@ -3,23 +3,53 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row row-cols-4 g-4">
-    @foreach (var product in ViewBag.Products)
-    {
-        <div class="col">
-            <div class="card h-100" >
-                <img style="height:380px" src="@product.Image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text">
-                        <b>Price: </b>@product.Price<br />
-                        <b>Quantity: </b>@product.Quantity<br />
-                        @*<b>Desciption: </b>@product.Desciption<br/>*@
-                        <b>Category: </b>@product.IdCategory<br />
-                    </p>
-                    <button type="button" onclick="add(@product.Id)" class="btn btn-primary">Add to cart</button>
+
+<div class="container mb-3">
+    <form class="d-flex" asp-controller="Home" asp-action="Index">
+        <input class="form-control" type="text" name="SearchString" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row row-cols-4 g-4">
+        @foreach (var product in ViewBag.Products)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img style="height:380px" src="@product.Image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">
+                            <b>Price: </b>@product.Price<br />
+                            <b>Quantity: </b>@product.Quantity<br />
+                            @*<b>Desciption: </b>@product.Desciption<br/>*@
+                            <b>Category: </b>
+                            @{
+                                bool isMatch = false;
+                                foreach (var x in ViewBag.Categories)
+                                {
+                                    if (x.Id == product.IdCategory)
+                                    {
+                                        isMatch = true;
+                                        <text>@x.Name</text>
+                                        break;
+                                    }
+                                }
+                                if (!isMatch)
+                                {
+                                    <text>Null</text>
+                                }
+                            }
+                            <br />
+                        </p>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        {
+                            <button type="button" onclick="add(@product.Id)" class="btn btn-primary">Add to cart</button>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

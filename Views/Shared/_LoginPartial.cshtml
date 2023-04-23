@@ -6,6 +6,15 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+        @if (User.IsInRole("User"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="">
+                    <span class="badge text-bg-info text-black">(0)</span>
+                    <i class="bi bi-cart"></i>
+                </a>
+            </li>
+        }
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
             Hello @User.Identity?.Name
@@ -26,12 +35,6 @@
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="">
-            <span class="badge text-bg-info">(0)</span>
-            <i class="bi bi-cart"></i>
-        </a>
-    </li>
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>

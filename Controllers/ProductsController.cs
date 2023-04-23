@@ -23,13 +23,23 @@ namespace _1670Book.Controllers
 
         // GET: Products
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            if (_context.Products == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var products = from prd in _context.Products select prd;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name!.Contains(searchString));
+            }
+
             var categories = _context.Category.ToList();
             ViewBag.Categories = categories;
-            return _context.Products != null ? 
-                          View(await _context.Products.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+            return View(await _context.Products.ToListAsync());
         }
 
         // GET: Products/Details/5
